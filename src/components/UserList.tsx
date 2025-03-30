@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '@/lib/api'; // Import the axios instance
 
 interface User {
   id: number;
@@ -12,7 +12,7 @@ const UserList: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/users', { withCredentials: true })
+    api.get('/users')
       .then(response => setUsers(response.data))
       .catch(error => console.error('Error fetching users:', error));
   }, []);
